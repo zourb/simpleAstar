@@ -44,7 +44,7 @@ void Environment::print(){
 		}
 	}
 }
-
+/*
 void Environment::touch(Location ll){
 	int tmp = map[ll.x][ll.y];
 	if(EMPTY==tmp)
@@ -56,7 +56,7 @@ void Environment::solved(Location ll){
 	if(TOUCHED==tmp)
 		map[ll.x][ll.y] = SOLVED;
 }
-
+*/
 int** Environment::get_map(){ return map; }
 
 Location Environment::get_target() const { return target; }
@@ -107,8 +107,9 @@ State::State(State& parent, Direction operation){
 	//env->touch(coor);
 	last_movement = operation;
 
-	calculate_f(&parent);
-	last_movement = operation;
+	//calculate_f(&parent);
+	calculate_f(this);
+	//last_movement = operation;
 }
 
 /* For each branch branched_nodes are initialized with a four element array. The

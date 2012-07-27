@@ -13,6 +13,6 @@ if process.argv.length < 7
 
 argvs = process.argv
 libastar.simpleAstar argvs[2], parseInt(argvs[3]), parseInt(argvs[4]), parseInt(argvs[5]), parseInt(argvs[6])
-libastar.simpleAstar './inp/inp.txt', 1, 1, 2, 2
+#libastar.simpleAstar './inp/inp.txt', 1, 1, 2, 2
   #console.log 'linking successfully'
 console.log 'after linking dynamic library ********'

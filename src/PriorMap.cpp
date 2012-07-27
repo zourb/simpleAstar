@@ -124,6 +124,7 @@ bool PriorMap::isExist(string key)
 
 Tree_Element* PriorMap::min_pop()
 {
+  cout << minKey << endl;
   Tree_Element *res = NULL;
   if(min_f_ele != NULL)
   {

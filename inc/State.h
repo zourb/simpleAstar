@@ -34,8 +34,8 @@ class Environment{
 	public:
 		Environment(int **array, int sx, int sy, Location s, Location t);
 		~Environment();
-		void touch(Location);	/* used to mark a location as TOUCHED */
-		void solved(Location);	/* used to mark a location as SOVLED */
+		//void touch(Location);	/* used to mark a location as TOUCHED */
+		//void solved(Location);	/* used to mark a location as SOVLED */
 		void print();			/* prints the world as START (s), TARGET (t), TOUCHED (x), EMPTY (-) and OBSTACLE (O) */
 
 		/* get functions */
