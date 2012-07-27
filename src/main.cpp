@@ -1,6 +1,6 @@
 /*
  *
- * Main function of the example code-1: 8-puzzle
+ * Main function
  *
  * */
 
@@ -28,31 +28,20 @@ int read_inp(const char *filename, int*** array, int& sx, int& sy){
 	return 0;
 }
 
-void usage(){ cerr << "Usage: <exe> <input file>\n"; }
+void usage(){ cerr << "Usage: something\n"; }
 
-//int simpleAstar(char *fd)
 extern "C" int simpleAstar(const char *fd, int start_x, int start_y, int target_x, int target_y)
 {
 	int** array;
 	int size_x,size_y;
   //const char *fd = "inp/inp.txt";
-
+  /*
 	if(fd == NULL){
 		usage();
-		//exit(1);
     return 1;
-	}
+	}*/
 	
 	read_inp(fd,&array,size_x,size_y);
-
-  if(start_x < 0 || start_x > size_x)
-    start_x = 0;
-  if(start_y < 0 || start_y > size_y)
-    start_y = 0;
-  if(target_x < 0 || target_x > size_x)
-    target_x = size_x - 1;  
-  if(target_y < 0 || target_y > size_y)
-    target_y = size_y - 1;
 
 /*
 int main(int argc, char *argv[])

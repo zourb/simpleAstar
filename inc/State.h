@@ -85,7 +85,7 @@ class State : public State_Base{
 
 		/* returns env */
 		Environment* get_env();
-
+    /* get the key used for PriorMap */
     string get_key();
 };
 

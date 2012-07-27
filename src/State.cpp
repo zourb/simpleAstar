@@ -112,7 +112,7 @@ State::State(State& parent, Direction operation){
 	//last_movement = operation;
 }
 
-/* For each branch branched_nodes are initialized with a four element array. The
+/* For each branch branched_nodes are initialized with a eight element array. The
  * members of the array with NULL are inappropriate nodes. These are not
  * taken into account in A_Star::solve()  */
 State_Base** State::Branch(int &nodes_n){

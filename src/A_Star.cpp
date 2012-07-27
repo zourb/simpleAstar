@@ -19,7 +19,6 @@ State* A_Star::solve(State* initial_state, int& solution_n){
 		/* The solution is found */
     if(t_tmp->get_state().get_h() == 0)
     {
-      cout << "end point: " << t_tmp->get_state().get_coor().x << "," << t_tmp->get_state().get_coor().y;
 			a_star_state = FOUND;
 			Tree_Element *solution_leaf = t_tmp;
 			Tree_Element *t_ele = solution_leaf;
@@ -78,7 +77,7 @@ State* A_Star::solve(State* initial_state, int& solution_n){
 	  }
 	}
 
-  //memory reclamation
+  //close_list memory reclaimation, open_list reclaim its' by itself
   if(close_list.size() > 0)
   {
      map<string,Tree_Element*>::iterator it;

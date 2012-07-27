@@ -48,8 +48,5 @@ class PriorMap{
     //pop the TreeElement which is the min f() from the map, 
     //re-calculate the minState and minKey
     Tree_Element* min_pop();
-
-    //get the min state from the map
-    Tree_Element* getMinTreeElement();
 };
 #endif

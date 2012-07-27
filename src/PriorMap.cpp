@@ -1,37 +1,6 @@
 #include <iostream>
 #include "PriorMap.h"
 using namespace std;
-/*
-int main ()
-{
-  map<char,int> mymap;
-  map<char,int>::iterator it;
-  pair<char,int> highest;
-
-  mymap['x']=1001;
-  mymap['y']=2002;
-  mymap['z']=3003;
-  mymap['c']=3003;
-  mymap['z']=5003;
-  mymap['a']=3003;
-
-  cout << "mymap contains:\n";
-
-  highest=*mymap.rbegin();          // last element
-
-  it=mymap.begin();
-
-  //int max = 
-
-  do {
-    cout << (*it).first << " => " << (*it).second << endl;
-  } while ( mymap.value_comp()(*it++, highest) );
-  cout << endl;
-  it=mymap.begin();
-  for(; it != mymap.end(); ++it)
-    cout << (*it).first << " => " << (*it).second << endl;
-  return 0;
-}*/
 
 Tree_Element::Tree_Element() : parent(NULL) {}
 
@@ -42,7 +11,6 @@ Tree_Element::Tree_Element(State_Base *st, Tree_Element *prnt=NULL) {
 	}
 	else{
 		cerr << "Error in Tree_Element::Tree_Element(State *st, Tree_Element *prnt=NULL)\n";
-		//exit(1);
     return;
 	}
 }
@@ -54,7 +22,6 @@ Tree_Element::Tree_Element(State_Base *st) {
 	}
 	else{
 		cerr << "Error in Tree_Element::Tree_Element(State *st)\n";
-		//exit(1);
     return;
 	}
 }
@@ -91,11 +58,10 @@ PriorMap::~PriorMap(){
 void PriorMap::set(string key, Tree_Element* ele){
   if(key == "" || ele == NULL)
     return;
-  //if((min_f_ele == NULL) || (ele->get_state().get_f() < min_f_ele->get_state().get_f())){
-  //if((min_f_ele == NULL)){
+  /* pair added to map needs setting min_f_ele and minKey 
+   * including the first pair or the pair has min_f*/
   min_f_ele = ele;
   minKey = key;
-  //}
 
   _map[key] = ele;
   return;
@@ -104,6 +70,8 @@ void PriorMap::set(string key, Tree_Element* ele){
 void PriorMap::add(string key, Tree_Element* ele){
   if(key == "" || ele == NULL)
     return;
+  /* if the _map.size() equals 0, then adding pair 
+   * should re-initialize min_f_ele and minKey */
   if(minKey == "" || min_f_ele == NULL)
   {
     minKey = key;
@@ -124,7 +92,6 @@ bool PriorMap::isExist(string key)
 
 Tree_Element* PriorMap::min_pop()
 {
-  cout << minKey << endl;
   Tree_Element *res = NULL;
   if(min_f_ele != NULL)
   {
@@ -135,6 +102,7 @@ Tree_Element* PriorMap::min_pop()
   min_f_ele = NULL;
   minKey = "";
 
+  /* re-calculate the minKey and min_f_ele */
   if(_map.size() > 0)
   {
      map<string,Tree_Element*>::iterator it;
@@ -150,6 +118,3 @@ Tree_Element* PriorMap::min_pop()
   return res;
 }
 
-Tree_Element* PriorMap::getMinTreeElement(){
-  return min_f_ele;
-}

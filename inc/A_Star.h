@@ -7,19 +7,11 @@
  *    each node has a pointer to its parent. This class is the 
  *    node class of the search three.
  *
- * 2) Queue_Element: This class the basic block to be used in
- *    the priority queue. It has a pointer to the tree_element.
- *    Since priority queue has to keep the leaf nodes, this
- *    class is aimed to contain a pointer of the related leaf.
- *    "priority_queue<,,>" definition in the STL library is used
- *    with that class.
+ * 2) PriorMap: Wrapped map which has the minKey and min_f_ele 
+ *    (the Tree_Element which has min f value) , is using for open_list in a* algo.
  *
- * 3) Prioritize_Queue_Elements: This is a friend class of Queue_Element
- *    to be used as a sorting function class in "priority_queue" that 
- *    has an instant in the A_Star class.
- *
- * 4) A_Star: This class keeps a pointer to the A-star search tree, an instant
- *    of priority_queue of "Queue_Element"s. The only thing that is necessary
+ * 3) A_Star: This class keeps a pointer to the A-star search tree, an instant
+ *    of PriorMap. The only thing that is necessary
  *    to do is to call the function "solve". If solution exists, the function
  *    returns the solution size (solution_n) and a solution_n-sized array
  *    of State array that is the solution. The first state is kept in the
