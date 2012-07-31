@@ -59,8 +59,6 @@ State* A_Star::solve(State* initial_state, int& solution_n){
               open_list.set(str, tmp);
               delete(cur);
             }
-            else
-              delete(branched_states[i]);
           }
           else
           {
@@ -68,11 +66,8 @@ State* A_Star::solve(State* initial_state, int& solution_n){
             open_list.add(str, tmp);
           }
         }
-        else
-        {
-          //do some delete
-          delete(branched_states[i]);
-        }
+        //do some delete
+        delete(branched_states[i]);
      }
 	  }
 	}
