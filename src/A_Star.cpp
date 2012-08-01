@@ -1,6 +1,6 @@
 #include <iostream>
-#include "State.h"
-#include "A_Star.h"
+#include "../inc/State.h"
+#include "../inc/A_Star.h"
 
 using namespace std;
 
@@ -70,6 +70,7 @@ State* A_Star::solve(State* initial_state, int& solution_n){
         delete(branched_states[i]);
      }
 	  }
+    delete[] branched_states;
 	}
 
   //close_list memory reclaimation, open_list reclaim its' by itself

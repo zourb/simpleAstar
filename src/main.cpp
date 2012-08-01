@@ -6,79 +6,91 @@
 
 #include<iostream>
 #include<fstream>
-#include "State.h"
-#include "A_Star.h"
-#include <stdlib.h>
+#include "../inc/State.h"
+#include "../inc/A_Star.h"
 using namespace std;
 
-/* reading the input from file with the name specified in filename */
-int read_inp(const char *filename, int*** array, int& sx, int& sy){
-	ifstream fin;
-	fin.open(filename);
-	fin >> sx >> sy;
-	*array = new int* [sx];
-	for(int i=0; i<sx; i++)
-		(*array)[i] = new int[sy];
-	
-	for(int i=0; i<sx; i++)
-		for(int j=0; j<sy; j++)
-			fin >> (*array)[i][j];
+/* global variable for map */
+int** array = NULL;
+int size_x;
+int size_y;
 
+/* reading the input from file with the name specified in filename */
+extern "C" int load_map(const char *filename){
+//int load_map(const char *filename){
+	ifstream fin;
+  if(filename == NULL)
+    filename = "../inp/map";
+	//if(!fin.open(filename))
+  //  return 1;
+  fin.open(filename);
+	fin >> size_x >> size_y;
+	array = new int* [size_x];
+	for(int i=0; i<size_x; i++)
+		array[i] = new int[size_y];
+	
+	for(int i=0; i<size_x; i++)
+		for(int j=0; j<size_y; j++)
+			fin >> array[i][j];
 	fin.close();
 	return 0;
 }
 
+extern "C" int destroy_map()
+//int destroy_map()
+{
+  if(array == NULL)
+    return 0;
+  for(int i = 0; i < size_x; i++)
+    if(array[i] != NULL)
+      delete[](array[i]);
+  delete[](array);
+  return 0;
+}
+
 void usage(){ cerr << "Usage: something\n"; }
-
-extern "C" int simpleAstar(const char *fd, int start_x, int start_y, int target_x, int target_y)
+extern "C" int simpleAstar(int start_x, int start_y, int target_x, int target_y)
 {
-	int** array;
-	int size_x,size_y;
-  //const char *fd = "inp/inp.txt";
-  /*
-	if(fd == NULL){
-		usage();
+  if(array == NULL)
     return 1;
-	}*/
-	
-	read_inp(fd,&array,size_x,size_y);
-
-/*
-int main(int argc, char *argv[])
+  for(int i = 0; i < size_x; i++)
+    if(array[i] == NULL)
+      return 1;
+/*int main(int argc, char *argv[])
 {
-	int** array;
-	int size_x,size_y;
-  int start_x = 1, start_y = 1, target_x = 2, target_y = 2;
-  //const char *fd = "inp/inp.txt";
-
-	if(argc != 6){
-		usage();
-		//exit(1);
+  int start_x = 1, start_y = 1, target_x = 2, target_y = 5;
+  //char* file = "../inp/map";
+  load_map(NULL);
+  if(array == NULL)
     return 1;
-	}
-	
-  start_x = atoi(argv[2]);
-  start_y = atoi(argv[3]);
-  target_x = atoi(argv[4]);
-  target_y = atoi(argv[5]);
+  for(int i = 0; i < size_x; i++)
+    if(array[i] == NULL)
+      return 1;
 */
-	read_inp(fd,&array,size_x,size_y);
 	/* the initial state (the root of the a-star tree) */
 	State *x = new State(array, size_x, size_y, start_x, start_y, target_x, target_y);
-	x->get_env()->print();
+  Environment* globalEnv = x->get_env();
+  if(globalEnv != NULL)
+    globalEnv->print();
 
 	A_Star as;
 	int number_of_states;
 	State *sol = as.solve(x,number_of_states);
 
-	cout << "\nThe path followed:\n";
+  if(sol != NULL)
+  {
+	  cout << "\nThe path followed:\n";
     for(int i=0;i<number_of_states;i++)
-    	sol[i].print();
-
-
-	//cout << "\nThe map locations that have been explored during A-star search are shown with X\n";
-	//sol[0].get_env()->print();
-	
+      sol[i].print();
+    delete[] sol;
+  }
+  /* object cleanup on heap */
+  if(x != NULL)
+    delete(x);
+  //if(sol != NULL)
+  //  delete(sol);
+  if(globalEnv != NULL)
+    delete(globalEnv);
 	return 0;
 }
 

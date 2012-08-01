@@ -6,8 +6,8 @@
  * */
 
 #include<iostream>
-#include "State_Base.h"
-#include "State.h"
+#include "../inc/State_Base.h"
+#include "../inc/State.h"
 
 using namespace std;
 
@@ -18,8 +18,6 @@ Environment::Environment(int **array, int sx, int sy, Location s, Location t){
 	size_y  = sy;
 	start = s;
 	target = t;
-	//map[s.x][s.y] = START;
-	//map[t.x][t.y] = TARGET;
 }
 
 void Environment::print(){
@@ -44,19 +42,7 @@ void Environment::print(){
 		}
 	}
 }
-/*
-void Environment::touch(Location ll){
-	int tmp = map[ll.x][ll.y];
-	if(EMPTY==tmp)
-		map[ll.x][ll.y] = TOUCHED;
-}
 
-void Environment::solved(Location ll){
-	int tmp = map[ll.x][ll.y];
-	if(TOUCHED==tmp)
-		map[ll.x][ll.y] = SOLVED;
-}
-*/
 int** Environment::get_map(){ return map; }
 
 Location Environment::get_target() const { return target; }
@@ -85,11 +71,6 @@ State::State(int **initial_map, int size_x, int size_y, int start_x, int start_y
 	last_movement = START;
 }
 
-/*State::State(State& parent)
-{
-  *this = parent;
-}*/
-
 State::State(State& parent, Direction operation){
 	*this = parent;
 	switch(operation){
@@ -104,12 +85,11 @@ State::State(State& parent, Direction operation){
 		default: break;
 	}
 
-	//env->touch(coor);
 	last_movement = operation;
 
 	//calculate_f(&parent);
+  //has the same effectiveness
 	calculate_f(this);
-	//last_movement = operation;
 }
 
 /* For each branch branched_nodes are initialized with a eight element array. The
@@ -189,9 +169,10 @@ int State::calculate_h(State_Base *parent){
 
 string State::get_key()
 {
-  stringstream sstr;
-  sstr << coor.x << ";" << coor.y;
-  key = sstr.str();
+  //stringstream sstr;
+  //sstr << coor.x << ";" << coor.y;
+  //key = sstr.str();
+  key = coor.x + ";" + coor.y;
   return key;
 }
 

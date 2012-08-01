@@ -1,5 +1,5 @@
 #include <iostream>
-#include "PriorMap.h"
+#include "../inc/PriorMap.h"
 using namespace std;
 
 Tree_Element::Tree_Element() : parent(NULL) {}
