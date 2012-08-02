@@ -13,7 +13,7 @@ using namespace std;
 /* global variable for map */
 int** array = NULL;
 int size_x;
-int size_y;
+int size_y = 0;
 
 /* reading the input from file with the name specified in filename */
 extern "C" int load_map(const char *filename){
