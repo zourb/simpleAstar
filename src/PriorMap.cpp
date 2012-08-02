@@ -98,6 +98,7 @@ Tree_Element* PriorMap::min_pop()
     res = min_f_ele;
     _map.erase(minKey);
   }
+  //cout << minKey << endl;
 
   min_f_ele = NULL;
   minKey = "";

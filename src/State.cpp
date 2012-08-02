@@ -169,10 +169,9 @@ int State::calculate_h(State_Base *parent){
 
 string State::get_key()
 {
-  //stringstream sstr;
-  //sstr << coor.x << ";" << coor.y;
-  //key = sstr.str();
-  key = coor.x + ";" + coor.y;
+  stringstream sstr;
+  sstr << coor.x << ";" << coor.y;
+  key = sstr.str();
   return key;
 }
 

@@ -11,12 +11,13 @@ libastar = ffi.Library('../lib/libastar', {
 console.log 'before linking dynamic library ********'
 if process.argv.length < 7
   console.log 'Usage: ' + process.argv[0] + ' ' + process.argv[1] + ' <map file> <startX> <startY> <endX> <endY>'
-  process.exit
+  process.exit()
 
 argvs = process.argv
 libastar.load_map argvs[2]
 
 libastar.simpleAstar parseInt(argvs[3]), parseInt(argvs[4]), parseInt(argvs[5]), parseInt(argvs[6])
-libastar.simpleAstar 1, 1, 2, 3
-libastar.destroy_map
+#for i in [1..1000]
+#libastar.simpleAstar 1, 1, 4, 6
+#libastar.destroy_map
 console.log 'after linking dynamic library ********'
