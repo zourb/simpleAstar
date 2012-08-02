@@ -42,6 +42,7 @@ State* A_Star::solve(State* initial_state, int& solution_n){
 		int new_states_n;
 		State_Base** branched_states = (((t_tmp->get_state()).Branch(new_states_n)));
 
+    /* update/insert open_list */
 		for(int i=0; i<new_states_n; i++){
 			if(branched_states[i] != NULL)
       {
