@@ -166,7 +166,7 @@ int State::calculate_h(State_Base *parent){
 	return h = abs(coor.x - env->get_target().x)*10 + abs(coor.y - env->get_target().y)*10;
 }
 
-
+/* something need to be fixed */
 string State::get_key()
 {
   stringstream sstr;

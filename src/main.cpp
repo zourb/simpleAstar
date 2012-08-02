@@ -12,7 +12,7 @@ using namespace std;
 
 /* global variable for map */
 int** array = NULL;
-int size_x;
+int size_x = 0;
 int size_y = 0;
 
 /* reading the input from file with the name specified in filename */
